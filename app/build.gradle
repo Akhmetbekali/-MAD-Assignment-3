@@ -1,9 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    apply plugin: 'kotlin-android-extensions'
-    apply plugin: 'kotlin-kapt'
-    apply plugin: "androidx.navigation.safeargs.kotlin"
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.assignment3"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -24,10 +24,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
             buildConfigField 'String', 'BASE_URL', '\"https://api.petfinder.com/v2/\"'
             buildConfigField 'String', 'CLIENT_ID', '\"YvRsXmKb7bdcpdK6iO1mnBLF82jQ7qVz59JUzInOKsS47MiAA5\"'
             buildConfigField 'String', 'CLIENT_SECRET', '\"w4T9uGco8p3quIrOk59ejVIEluMackdg0yYl56vM\"'
 
+        }
+
+        debug {
+            buildConfigField 'String', 'BASE_URL', '\"https://api.petfinder.com/v2/\"'
+            buildConfigField 'String', 'CLIENT_ID', '\"YvRsXmKb7bdcpdK6iO1mnBLF82jQ7qVz59JUzInOKsS47MiAA5\"'
+            buildConfigField 'String', 'CLIENT_SECRET', '\"w4T9uGco8p3quIrOk59ejVIEluMackdg0yYl56vM\"'
         }
     }
     compileOptions {
@@ -62,6 +69,7 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
 
@@ -93,14 +101,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
-// Image loader
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
-
 // RX
     implementation("io.reactivex.rxjava2:rxjava:2.1.9")
     implementation("io.reactivex.rxjava2:rxandroid:2.0.1")
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.0-alpha04"
+   implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.0-alpha04"
 
 }
