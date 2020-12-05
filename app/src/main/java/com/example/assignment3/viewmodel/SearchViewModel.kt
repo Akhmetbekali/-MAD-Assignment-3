@@ -33,18 +33,24 @@ class SearchViewModel
     // TODO Improve don't forget use offline storage
     init {
         _networkActive.postValue(repository.testNetwork())
-        _allAnimals.postValue(repository.getAllAnimals().value ?: emptyList())
-        _allTypes.postValue(listOf(any))
+        _allAnimals.postValue(repository.getAllAnimals(null, null).value ?: emptyList())
+        _allTypes.postValue(listOf(any).plus(repository.getAllTypes().value?.map { it -> it.name }
+                ?: emptyList()))
         _breeds.postValue(listOf(any))
-
     }
     // TODO Improve
     fun selectType(type: String) {
-        _breeds.postValue(emptyList())
+        if (type == ""){
+            _breeds.postValue(listOf(any))
+        }
+        else {
+            _breeds.postValue(listOf(any).plus(repository.getAllBreeds(type).value?.map { it -> it.name }
+                    ?: emptyList()))
+        }
     }
         // TODO Improve
-    fun findAnimals(type: String, breed: String) {
-        _allAnimals.postValue(repository.getAllAnimals().value)
+    fun findAnimals(type: String?, breed: String?) {
+        _allAnimals.postValue(repository.getAllAnimals(type, breed).value)
     }
 }
 
