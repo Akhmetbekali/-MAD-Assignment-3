@@ -1,7 +1,6 @@
 package com.example.assignment3.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,18 +8,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.example.assignment3.R
 import com.example.assignment3.data.db.AnimalDbModel
 import com.example.assignment3.databinding.SearchFragmentBinding
 import com.example.assignment3.view.adapter.AnimalItemAdapter
 import com.example.assignment3.view.adapter.VerticalItemDecorator
 import com.example.assignment3.viewmodel.SearchViewModel
-
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 class SearchFragment : Fragment() {
 
@@ -69,22 +66,20 @@ class SearchFragment : Fragment() {
     }
 
     private fun subscribeUi() {
-        val animalKindSpinnerTypesAdapter = createAdapter()
-        binding.animalKindSpinner.adapter = animalKindSpinnerTypesAdapter
-
-        val breedSpinnerTypesAdapter = createAdapter()
-        binding.breedSpinner.adapter = breedSpinnerTypesAdapter
-
-
         viewModel.allAnimals.observe(this.viewLifecycleOwner, Observer { list ->
             setAnimals(list)
         })
 
         viewModel.allTypes.observe(this.viewLifecycleOwner, Observer { types ->
+            val animalKindSpinnerTypesAdapter = createAdapter(types)
+            binding.animalKindSpinner.adapter = animalKindSpinnerTypesAdapter
            // TODO Add binding logic
+
         })
 
        viewModel.breeds.observe(this.viewLifecycleOwner, Observer { breeds ->
+           val breedSpinnerTypesAdapter = createAdapter(breeds)
+           binding.breedSpinner.adapter = breedSpinnerTypesAdapter
            // TODO Add binding logic
        })
 
@@ -111,7 +106,14 @@ class SearchFragment : Fragment() {
                     position: Int,
                     id: Long
                 ) {
-                   // TODO Implement logic
+                    if (parent?.selectedItem.toString() == "Any") {
+                        viewModel.findAnimals(null, null)
+                    }
+                    else{
+                        viewModel.findAnimals(parent?.selectedItem.toString(), null)
+                    }
+                    viewModel.selectType(parent?.selectedItem.toString())
+                    // TODO Implement logic
                 }
             }
 
@@ -126,17 +128,20 @@ class SearchFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
+                if (parent?.selectedItem.toString() != "Any") {
+                    viewModel.findAnimals(binding.animalKindSpinner.selectedItem.toString(), parent?.selectedItem.toString())
+                }
                 // TODO Implement logic
             }
 
         }
     }
 
-    fun createAdapter(): ArrayAdapter<String> {
+    fun createAdapter(array: List<String>): ArrayAdapter<String> {
         val adapter = ArrayAdapter(
             requireActivity(),
             android.R.layout.simple_spinner_item,
-            ArrayList(listOf<String>())
+            array
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         return adapter
