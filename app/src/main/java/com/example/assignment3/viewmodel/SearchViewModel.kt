@@ -57,7 +57,7 @@ class SearchViewModel
         // TODO Improve
     fun findAnimals(type: String?, breed: String?) {
         viewModelScope.launch(Dispatchers.IO) {
-            _allAnimals.postValue(repository.getAllAnimals(type, breed).value)
+            _allAnimals.postValue(repository.getAllAnimals(type, breed).value ?: emptyList())
         }
     }
 }

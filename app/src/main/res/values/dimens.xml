@@ -14,5 +14,4 @@
     <dimen name="textSize">12sp</dimen>
     <dimen name="descriptionSize">16sp</dimen>
     <dimen name="nameSize">20sp</dimen>
-    <dimen name="maxLines">2</dimen>
 </resources>

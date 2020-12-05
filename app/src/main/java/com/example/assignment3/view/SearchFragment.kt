@@ -131,6 +131,9 @@ class SearchFragment : Fragment() {
                 if (parent?.selectedItem.toString() != "Any") {
                     viewModel.findAnimals(binding.animalKindSpinner.selectedItem.toString(), parent?.selectedItem.toString())
                 }
+                else if (binding.animalKindSpinner.selectedItem.toString() != "Any") {
+                    viewModel.findAnimals(binding.animalKindSpinner.selectedItem.toString(), null)
+                }
                 // TODO Implement logic
             }
 
