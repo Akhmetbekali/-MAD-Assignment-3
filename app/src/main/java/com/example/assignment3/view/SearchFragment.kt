@@ -88,7 +88,7 @@ class SearchFragment : Fragment() {
             if (!isActive) {
                 Toast.makeText(
                     activity!!,
-                    "There is no internet.", Toast.LENGTH_LONG
+                    R.string.no_internet, Toast.LENGTH_LONG
                 ).show()
 
             }

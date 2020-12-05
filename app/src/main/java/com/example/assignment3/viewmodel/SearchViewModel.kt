@@ -5,6 +5,8 @@ import androidx.lifecycle.*
 import com.example.assignment3.data.AnimalRepository
 import com.example.assignment3.data.db.AnimalDbModel
 import com.example.assignment3.sharedpreferences.SharedPreferencesWrapper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 import javax.inject.Inject
 import javax.inject.Named
@@ -32,25 +34,31 @@ class SearchViewModel
 
     // TODO Improve don't forget use offline storage
     init {
-        _networkActive.postValue(repository.testNetwork())
-        _allAnimals.postValue(repository.getAllAnimals(null, null).value ?: emptyList())
-        _allTypes.postValue(listOf(any).plus(repository.getAllTypes().value?.map { it -> it.name }
-                ?: emptyList()))
-        _breeds.postValue(listOf(any))
+        viewModelScope.launch(Dispatchers.IO) {
+            _networkActive.postValue(repository.testNetwork())
+            _allAnimals.postValue(repository.getAllAnimals(null, null).value ?: emptyList())
+            _allTypes.postValue(listOf(any).plus(repository.getAllTypes().value?.map { it -> it.name }
+                    ?: emptyList()))
+            _breeds.postValue(listOf(any))
+        }
+
     }
     // TODO Improve
     fun selectType(type: String) {
-        if (type == ""){
-            _breeds.postValue(listOf(any))
-        }
-        else {
-            _breeds.postValue(listOf(any).plus(repository.getAllBreeds(type).value?.map { it -> it.name }
-                    ?: emptyList()))
+        viewModelScope.launch(Dispatchers.IO) {
+            if (type == "Any") {
+                _breeds.postValue(listOf(any))
+            } else {
+                _breeds.postValue(listOf(any).plus(repository.getAllBreeds(type).value?.map { it -> it.name }
+                        ?: emptyList()))
+            }
         }
     }
         // TODO Improve
     fun findAnimals(type: String?, breed: String?) {
-        _allAnimals.postValue(repository.getAllAnimals(type, breed).value)
+        viewModelScope.launch(Dispatchers.IO) {
+            _allAnimals.postValue(repository.getAllAnimals(type, breed).value)
+        }
     }
 }
 

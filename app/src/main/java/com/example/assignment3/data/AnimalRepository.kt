@@ -20,7 +20,7 @@ class AnimalRepository(
     var petFinderService: PetfinderService
 ) {
 
-    fun testNetwork(): Boolean = petFinderService.getAnimals(null.toString(), null.toString())
+    fun testNetwork(): Boolean = petFinderService.getAnimals()
         .map {
             true
         }.onErrorReturn {

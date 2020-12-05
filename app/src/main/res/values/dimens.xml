@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zero">0dp</dimen>
+    <dimen name="layout_margin_top">4dp</dimen>
+    <dimen name="layout_margin">8dp</dimen>
+    <dimen name="search_view_item_padding">10dp</dimen>
+    <dimen name="layout_marginStart">16dp</dimen>
+    <dimen name="closeButtonSize">20dp</dimen>
+    <dimen name="corner_crop">30dp</dimen>
+    <dimen name="close_button_size">40dp</dimen>
+    <dimen name="layout_width">50dp</dimen>
+    <dimen name="search_view_height">60dp</dimen>
+    <dimen name="imageSize">300dp</dimen>
+    <dimen name="textSize">12sp</dimen>
+    <dimen name="descriptionSize">16sp</dimen>
+    <dimen name="nameSize">20sp</dimen>
+    <dimen name="maxLines">2</dimen>
+</resources>

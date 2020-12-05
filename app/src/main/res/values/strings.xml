@@ -9,4 +9,8 @@
     <string name="size">Size</string>
     <string name="description">Description</string>
     <string name="breed">Breed</string>
+    <string name="x">Close</string>
+    <string name="image">Image</string>
+    <string name="no_internet">There is no internet.</string>
+
 </resources>

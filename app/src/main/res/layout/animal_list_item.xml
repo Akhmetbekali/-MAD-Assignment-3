@@ -21,24 +21,24 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/search_view_height"
+            android:layout_height="@dimen/search_view_height"
+            android:layout_marginStart="@dimen/layout_margin"
+            android:layout_marginTop="@dimen/layout_margin"
             android:scaleType="centerCrop"
-            app:cardCornerRadius="30dp"
+            app:cardCornerRadius="@dimen/corner_crop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/breedTextView"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/layout_margin_top"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="12sp"
+            android:textSize="@dimen/textSize"
             app:layout_constraintBottom_toBottomOf="parent"
 
             app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -47,10 +47,10 @@
             tools:text="TextView" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/layout_margin"
+            android:layout_marginEnd="@dimen/layout_margin"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/animalAgeTextView"
@@ -62,16 +62,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/nameSize"
                 tools:text="TextView" />
 
             <TextView
                 android:id="@+id/animalDescriptionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:maxLines="2"
-                android:textSize="16sp"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:maxLines="@dimen/maxLines"
+                android:textSize="@dimen/descriptionSize"
                 tools:text="TextView" />
         </LinearLayout>
 
@@ -79,7 +79,7 @@
             android:id="@+id/animalAgeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/layout_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
