@@ -45,8 +45,7 @@ class AnimalRepository(
     }
 
     fun getAllTypes(): LiveData<List<AnimalTypeDbModel>> {
-        return if(testNetwork()) {
-            petFinderService.getTypes()
+        return petFinderService.getTypes()
                     .subscribeOn(Schedulers.io())
                     .map {
                         val types = it.typesString.map { a -> typemapper(a) }
@@ -55,16 +54,15 @@ class AnimalRepository(
                             // TODO Improve store to DB
                         }
                         MutableLiveData(types) as LiveData<List<AnimalTypeDbModel>>
-                    }.blockingGet()
-        }
-        else{
-            animalTypeDao.getAllTypes()
-        }
+                    }.onErrorReturn {
+                    animalTypeDao.getAllTypes()
+                }
+                .blockingGet()
+
     }
 
     fun getAllBreeds(type: String): LiveData<List<AnimalBreedDbModel>> {
-        return if(testNetwork()) {
-            petFinderService.getBreeds(type)
+        return petFinderService.getBreeds(type)
                     .subscribeOn(Schedulers.io())
                     .map {
                         val breeds = it.breedsString.map { a -> breedmapper(a, type) }
@@ -73,11 +71,9 @@ class AnimalRepository(
                             // TODO Improve store to DB
                         }
                         MutableLiveData(breeds) as LiveData<List<AnimalBreedDbModel>>
-                    }.blockingGet()
-        }
-        else{
-            animalBreedDao.getAllBreedsByType(type)
-        }
+                    }.onErrorReturn {
+                animalBreedDao.getAllBreedsByType(type)
+            }.blockingGet()
     }
 
     private fun mapper(animal: Animal): AnimalDbModel =
