@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "animal_table")
+@Entity(tableName = "animal_type_table")
 data class AnimalTypeDbModel(
     @PrimaryKey @ColumnInfo(name = "name") val name: String
 ): Parcelable

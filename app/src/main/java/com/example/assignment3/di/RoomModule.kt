@@ -2,8 +2,10 @@ package com.example.assignment3.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.assignment3.data.db.AnimalBreedDao
 import com.example.assignment3.data.db.AnimalDao
 import com.example.assignment3.data.db.AnimalRoomDatabase
+import com.example.assignment3.data.db.AnimalTypeDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -27,4 +29,13 @@ class RoomModule(context: Context) {
     @Singleton
     @Provides
     fun providesAnimalDao(): AnimalDao = animalDatabase.animalDao()
+
+    @Singleton
+    @Provides
+    fun providesAnimalTypeDao(): AnimalTypeDao = animalDatabase.animalTypeDao()
+
+
+    @Singleton
+    @Provides
+    fun providesAnimalBreedDao(): AnimalBreedDao = animalDatabase.animalBreedDao()
 }
