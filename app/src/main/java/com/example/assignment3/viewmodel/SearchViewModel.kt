@@ -20,7 +20,7 @@ class SearchViewModel
 
     val any = "Any"
 
-    private var _allAnimals: LiveData<List<AnimalDbModel>> = repository.getAllAnimals(null, null)
+    private var _allAnimals: MutableLiveData<List<AnimalDbModel>> = MutableLiveData() // repository.getAllAnimals(null, null)
     val allAnimals: LiveData<List<AnimalDbModel>> get() = _allAnimals
 
     private val _networkActive: MutableLiveData<Boolean> = MutableLiveData(true)
@@ -56,7 +56,8 @@ class SearchViewModel
         // TODO Improve
     fun findAnimals(type: String?, breed: String?) {
         viewModelScope.launch(Dispatchers.IO) {
-            _allAnimals = repository.getAllAnimals(type, breed)
+            _allAnimals.postValue(repository.getAllAnimals(type, breed).value)
+//            _allAnimals = repository.getAllAnimals(type, breed)
         }
     }
 }

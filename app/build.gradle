@@ -26,15 +26,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             buildConfigField 'String', 'BASE_URL', '\"https://api.petfinder.com/v2/\"'
-            buildConfigField 'String', 'CLIENT_ID', '\"YvRsXmKb7bdcpdK6iO1mnBLF82jQ7qVz59JUzInOKsS47MiAA5\"'
-            buildConfigField 'String', 'CLIENT_SECRET', '\"w4T9uGco8p3quIrOk59ejVIEluMackdg0yYl56vM\"'
+//            buildConfigField 'String', 'CLIENT_ID', '\"YvRsXmKb7bdcpdK6iO1mnBLF82jQ7qVz59JUzInOKsS47MiAA5\"'
+//            buildConfigField 'String', 'CLIENT_SECRET', '\"w4T9uGco8p3quIrOk59ejVIEluMackdg0yYl56vM\"'
+            buildConfigField 'String', 'CLIENT_ID', '\"wuTVgkUDcdRGTIxTkzd6DRsv9UrvwVSoSEANhh0U2A2jMOMNCA\"'
+            buildConfigField 'String', 'CLIENT_SECRET', '\"OuKPjjSIrmcNT6IErVGSAImT9uKlYpDKVdp2FEIX\"'
 
         }
 
         debug {
             buildConfigField 'String', 'BASE_URL', '\"https://api.petfinder.com/v2/\"'
-            buildConfigField 'String', 'CLIENT_ID', '\"YvRsXmKb7bdcpdK6iO1mnBLF82jQ7qVz59JUzInOKsS47MiAA5\"'
-            buildConfigField 'String', 'CLIENT_SECRET', '\"w4T9uGco8p3quIrOk59ejVIEluMackdg0yYl56vM\"'
+//            buildConfigField 'String', 'CLIENT_ID', '\"YvRsXmKb7bdcpdK6iO1mnBLF82jQ7qVz59JUzInOKsS47MiAA5\"'
+//            buildConfigField 'String', 'CLIENT_SECRET', '\"w4T9uGco8p3quIrOk59ejVIEluMackdg0yYl56vM\"'
+            buildConfigField 'String', 'CLIENT_ID', '\"wuTVgkUDcdRGTIxTkzd6DRsv9UrvwVSoSEANhh0U2A2jMOMNCA\"'
+            buildConfigField 'String', 'CLIENT_SECRET', '\"OuKPjjSIrmcNT6IErVGSAImT9uKlYpDKVdp2FEIX\"'
         }
     }
     compileOptions {

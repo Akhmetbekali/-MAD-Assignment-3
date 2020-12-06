@@ -97,6 +97,9 @@ class SearchFragment : Fragment() {
         binding.animalKindSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
+                    viewModel.allAnimals.observe(viewLifecycleOwner, Observer { list ->
+                        setAnimals(list)
+                    })
                     // TODO Implement logic
                 }
 
@@ -114,11 +117,18 @@ class SearchFragment : Fragment() {
                     }
                     viewModel.selectType(parent?.selectedItem.toString())
                     // TODO Implement logic
+                    viewModel.allAnimals.observe(viewLifecycleOwner, Observer { list ->
+                        setAnimals(list)
+                    })
                 }
+
             }
 
         binding.breedSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
+                viewModel.allAnimals.observe(viewLifecycleOwner, Observer { list ->
+                    setAnimals(list)
+                })
                 // TODO Implement logic
             }
 
@@ -128,12 +138,20 @@ class SearchFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                if (parent?.selectedItem.toString() != "Any") {
+                if (parent?.selectedItem.toString() == "Any") {
+                    if (binding.animalKindSpinner.selectedItem.toString() == "Any") {
+                        viewModel.findAnimals(null, null)
+                    }
+                    else {
+                        viewModel.findAnimals(binding.animalKindSpinner.selectedItem.toString(), null)
+                    }
+                }
+                else {
                     viewModel.findAnimals(binding.animalKindSpinner.selectedItem.toString(), parent?.selectedItem.toString())
                 }
-                else if (binding.animalKindSpinner.selectedItem.toString() != "Any") {
-                    viewModel.findAnimals(binding.animalKindSpinner.selectedItem.toString(), null)
-                }
+                viewModel.allAnimals.observe(viewLifecycleOwner, Observer { list ->
+                    setAnimals(list)
+                })
                 // TODO Implement logic
             }
 
